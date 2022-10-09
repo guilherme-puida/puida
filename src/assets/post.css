@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    a {
+        @apply underline;
+    }
+
+    main {
+        @apply space-y-3;
+    }
+
+    article {
+        @apply space-y-6;
+    }
+
+    article h1 {
+        @apply text-2xl font-bold before:content-['#_'] mt-8 mb-2
+    }
+
+    article h2 {
+        @apply text-lg font-bold before:content-['##_'] mt-5 mb-2
+    }
+
+    article h3 {
+        @apply font-bold before:content-['###_'] mt-2 mb-2
+    }
+
+    article ul > li {
+        @apply list-disc list-inside;
+    }
+}

@@ -1,0 +1,36 @@
+---
+import type { MarkdownLayoutProps } from "astro";
+import "../assets/post.css";
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+
+type Props = MarkdownLayoutProps<{
+  title: string;
+  description: string;
+  date: string;
+  tags: string[];
+}>;
+
+const {
+  frontmatter: { title, description },
+  url,
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <BaseHead title={"puida.xyz | " + title}>
+    <link rel="canonical" href={new URL(url!, Astro.site).pathname} />
+    <meta name="description" content={description}>
+  </BaseHead>
+  <body class="max-w-2xl mx-auto px-5 font-mono text-justify bg-neutral-100">
+    <Header />
+    <main>
+      <article>
+        <slot />
+      </article>
+    </main>
+    <Footer />
+  </body>
+</html>

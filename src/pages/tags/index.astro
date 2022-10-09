@@ -1,0 +1,33 @@
+---
+import Base from "../../layouts/Base.astro";
+
+interface Frontmatter {
+  title: string;
+  description: string;
+  tags: string[];
+  date: string;
+}
+
+const posts = await Astro.glob<Frontmatter>("./../blog/*.md");
+const tags: Map<string, number> = new Map();
+
+posts.forEach((post) => {
+  post.frontmatter.tags.forEach((tag) => {
+    tags.set(tag, (tags.get(tag) ?? 0) + 1);
+  });
+});
+---
+
+<Base title="puida.xyz | tags">
+  <h1 class="text-lg font-bold">Tags</h1>
+
+  <ul>
+    {
+      Array.from(tags).map(([tag, amount]) => (
+        <li>
+          <a href={'tags/' + tag}>#{tag}</a> ({amount})
+        </li>
+      ))
+    }
+  </ul>
+</Base>

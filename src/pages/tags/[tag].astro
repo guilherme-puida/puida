@@ -1,0 +1,47 @@
+---
+import PostCard from "../../components/PostCard.astro";
+import Base from "../../layouts/Base.astro";
+
+interface Frontmatter {
+  title: string;
+  description: string;
+  tags: string[];
+  date: string;
+}
+
+export async function getStaticPaths() {
+  const posts = await Astro.glob<Frontmatter>("./../blog/*.md");
+
+  const tags = [...new Set(posts.flatMap((post) => post.frontmatter.tags))];
+
+  return tags.map((tag) => ({ params: { tag } }));
+}
+
+const { tag } = Astro.params;
+
+const posts = (await Astro.glob<Frontmatter>("./../blog/*.md"))
+  .filter((post) => post.frontmatter.tags.includes(tag as string))
+  .sort((a, b) => (a.frontmatter.date < b.frontmatter.date ? 1 : -1));
+---
+
+<Base title="puia.xyz | tags">
+  <h1 class="text-lg">
+    Posts tagged with <span class="font-bold">#{tag}</span>
+  </h1>
+
+  <ul class="space-y-5 divide-y divide-dashed divide-black">
+    {
+      posts.map((post) => (
+        <li>
+          <PostCard
+            title={post.frontmatter.title}
+            description={post.frontmatter.description}
+            date={post.frontmatter.date}
+            tags={post.frontmatter.tags}
+            href={post.url!}
+          />
+        </li>
+      ))
+    }
+  </ul>
+</Base>

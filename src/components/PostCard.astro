@@ -1,0 +1,35 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  date: string;
+  tags: string[];
+  href: string;
+}
+
+const { title, description, date, tags, href } = Astro.props;
+---
+
+<div class="mt-2">
+  <h3 class="text-lg font-bold"><a href={href}>{title}</a></h3>
+  <p>{description}</p>
+  <small>
+    {
+      new Date(date).toLocaleDateString("en-US", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })
+    }
+    |
+    <span class="space-x-3">
+      {
+        tags.map((tag) => (
+          <a href={"tags/" + tag} class="text-neutral-700">
+            #{tag}
+          </a>
+        ))
+      }
+    </span>
+  </small>
+</div>
