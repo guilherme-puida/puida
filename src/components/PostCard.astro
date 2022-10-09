@@ -25,7 +25,7 @@ const { title, description, date, tags, href } = Astro.props;
     <span class="space-x-3">
       {
         tags.map((tag) => (
-          <a href={"tags/" + tag} class="text-neutral-700">
+          <a href={"/tags/" + tag} class="text-neutral-700">
             #{tag}
           </a>
         ))
