@@ -16,15 +16,15 @@
     }
 
     article h1 {
-        @apply text-2xl font-bold before:content-['#_'] mt-8 mb-2
+        @apply text-2xl font-bold before:content-['#_'] mt-8 mb-2 text-left;
     }
 
     article h2 {
-        @apply text-lg font-bold before:content-['##_'] mt-5 mb-2
+        @apply text-lg font-bold before:content-['##_'] mt-5 mb-2 text-left;
     }
 
     article h3 {
-        @apply font-bold before:content-['###_'] mt-2 mb-2
+        @apply font-bold before:content-['###_'] mt-2 mb-2 text-left;
     }
 
     article ul > li {
