@@ -7,7 +7,10 @@ import rehypeSlug from "rehype-slug";
 export default defineConfig({
   markdown: {
     extendDefaultPlugins: true,
-    rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: "wrap" }]]
+    rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: "wrap" }]],
+    shikiConfig: {
+      theme: 'material-ocean',
+    },
   },
   integrations: [
     tailwind({
