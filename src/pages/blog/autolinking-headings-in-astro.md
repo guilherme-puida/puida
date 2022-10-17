@@ -7,7 +7,7 @@ date: 2022-10-17
 pubDate: 2022-10-17
 ---
 
-# Autolining headings in Astro posts
+# Autolinking headings in Astro posts
 
 As explained in [my previous post](./static-websites-are-really-cool), this
 website is build with [Astro](https://astro.build/).
